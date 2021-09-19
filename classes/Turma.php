@@ -44,9 +44,11 @@ class Turma {
 
     public static function excluir($codigo) {
         $db = Database::conexao();
-        $turmas = null;
-        if ($db->query("DELETE FROM turma WHERE codigo=$codigo")) {
+        try {
+            $db->query("DELETE FROM turma WHERE codigo=$codigo");
             return true;
+        } catch (Exception $exc) {
+            return false;
         }
         return false;
     }

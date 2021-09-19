@@ -131,9 +131,11 @@ class Professor {
      */
     public static function excluir($codigo) {
         $db = Database::conexao();
-        $professor = null;
-        if ($db->query("DELETE FROM professor WHERE codigo=$codigo")) {
+        try {
+            $db->query("DELETE FROM professor WHERE codigo=$codigo");
             return true;
+        } catch (Exception $exc) {
+            return false;
         }
         return false;
     }

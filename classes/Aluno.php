@@ -47,10 +47,12 @@ class Aluno {
 
     public static function excluir($codigo) {
         $db = Database::conexao();
-        if ($db->query("DELETE FROM aluno WHERE codigo=$codigo")) {
+        try {
+            $db->query("DELETE FROM aluno WHERE codigo=$codigo");
             return true;
+        } catch (Exception $exc) {
+            return false;
         }
-        return false;
     }
 
     public function salvar() {
