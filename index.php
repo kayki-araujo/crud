@@ -8,7 +8,7 @@ include DIR_TEMPLATE . "/header.php";
  * Função para realizar o carregamento automatico das classes
  */
 spl_autoload_register(function ($classe) {
-    include URL_HOME . "/classes/" . $classe . ".php";
+    include DIR_HOME . "/classes/" . $classe . ".php";
 });
 
 if (isset($_GET["path"])) {
