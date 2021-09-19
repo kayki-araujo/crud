@@ -17,7 +17,7 @@ class Professor {
     /**
      * Representa a coluna 'nome'
      * @access private
-     * @name codigo 
+     * @name nome
      */
     private $nome;
 
@@ -44,10 +44,22 @@ class Professor {
         return $this->codigo;
     }
 
+    /**
+     * Retorno nome do professor
+     * @access public
+     * @name getNome
+     * @return String nome
+     */
     public function getNome() {
         return $this->nome;
     }
 
+    /**
+     * Salva o objeto atual e seus paramentros para o banco de dados
+     * @access public
+     * @name salvar
+     * @return Boolean true se salvou; false se não salvou
+     */
     public function salvar() {
         try {
             $db = Database::conexao();
@@ -68,9 +80,13 @@ class Professor {
         return true;
     }
 
-    public function delete() {
-    }
-
+    /**
+     * Retorna as colunas da tabela professor em um array
+     * @name listar
+     * @access public
+     * @static
+     * @return Array lista 
+     */
     public static function listar() {
         $db = Database::conexao();
         $professores = null;
@@ -85,7 +101,14 @@ class Professor {
         return $professores;
     }
 
-
+    /**
+     * Retorna uma instancia de professor
+     * @access public
+     * @static
+     * @param Int $codigo codigo do professor
+     * @return Professor
+     * @return Boolean false: caso não exista o professor
+     */
     public static function getProfessor($codigo) {
         $db = Database::conexao();
         $retorno = $db->query("SELECT * FROM professor WHERE codigo= $codigo");
@@ -98,6 +121,14 @@ class Professor {
         return false;
     }
 
+    /**
+     * Exclui um aluno pelo codigo
+     * @access public
+     * @static
+     * @param Int $codigo codigo do professor
+     * @return Boolean true: caso deletado
+     * @return Boolean false: caso não deletado
+     */
     public static function excluir($codigo) {
         $db = Database::conexao();
         $professor = null;
