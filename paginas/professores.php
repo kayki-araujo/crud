@@ -116,4 +116,3 @@ if (!isset($professor)) {
         </tbody>
     </table>
 </div>
-</body>
